@@ -1,0 +1,17 @@
+version: "3.7"
+services:
+  fastapi:
+    build:
+      context: ./
+      dockerfile: ./fastapi/Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./fastapi/app/:/app
+    tty: true
+#  front:
+#    build:
+#      context: ./front
+#    ports:
+#      - "5000:3000"
+#  db:
