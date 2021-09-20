@@ -1,15 +1,18 @@
 from typing import Optional
-
+from starlette.middleware.cors import CORSMiddleware
 from fastapi import FastAPI
+from config import config
 
 app = FastAPI()
 
+origins = [
+    "*"
+]
 
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
-
-
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Optional[str] = None):
-    return {"item_id": item_id, "q": q}
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
